@@ -231,6 +231,7 @@ class _UserProfileDetailScreenState extends State<UserProfileDetailScreen> {
                             favController?.toggleFavorite(
                               businessId,
                               businessName: displayName,
+                              business: activeBusiness,
                             );
                           },
                           padding: EdgeInsets.zero,
@@ -427,6 +428,7 @@ class _UserProfileDetailScreenState extends State<UserProfileDetailScreen> {
                                 favController?.toggleFavorite(
                                   businessId,
                                   businessName: displayName,
+                                  business: activeBusiness,
                                 );
                               },
                             ),

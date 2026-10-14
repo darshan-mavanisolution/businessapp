@@ -14,7 +14,6 @@ class OnboardingScreen extends StatelessWidget {
     final bg = isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final textPrimary = isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;
     final textSecondary = isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary;
-    final btnBg = isDark ? Colors.white : Colors.black;
     final btnText = isDark ? Colors.black : Colors.white;
     final badgeBg = isDark ? const Color(0xFF18181B) : const Color(0xFFF4F4F5);
     final badgeBorder = isDark ? const Color(0xFF27272A) : const Color(0xFFE4E4E7);
@@ -28,40 +27,41 @@ class OnboardingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   // App Brand Chip
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: badgeBg,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: badgeBorder, width: 1),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: isDark ? Colors.white : Colors.black,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        const SizedBox(width: 7),
-                        Text(
-                          'Rotaract Clubs',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: -0.2,
-                            color: textPrimary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  //   decoration: BoxDecoration(
+                  //     color: badgeBg,
+                  //     borderRadius: BorderRadius.circular(20),
+                  //     border: Border.all(color: badgeBorder, width: 1),
+                  //   ),
+                  //   child: Row(
+                  //     mainAxisSize: MainAxisSize.min,
+                  //     children: [
+                  //       Container(
+                  //         width: 8,
+                  //         height: 8,
+                  //         decoration: BoxDecoration(
+                  //           color: isDark ? Colors.white : Colors.black,
+                  //           shape: BoxShape.circle,
+                  //         ),
+                  //       ),
+                  //       const SizedBox(width: 7),
+                  //       // Text(
+                  //       //   'Rotaract Clubs',
+                  //       //   style: TextStyle(
+                  //       //     fontSize: 12,
+                  //       //     fontWeight: FontWeight.w700,
+                  //       //     letterSpacing: -0.2,
+                  //       //     color: textPrimary,
+                  //       //   ),
+                  //       // ),
+                  //     ],
+                  //   ),
+                  // ),
 
                   // Skip Button
                   Obx(() {
@@ -205,7 +205,7 @@ class OnboardingScreen extends StatelessWidget {
                             width: isSelected ? 26 : 7,
                             decoration: BoxDecoration(
                               color: isSelected
-                                  ? (isDark ? Colors.white : Colors.black)
+                                  ? AppColors.rotaryBlue
                                   : (isDark
                                       ? Colors.white.withValues(alpha: 0.2)
                                       : Colors.black.withValues(alpha: 0.15)),
@@ -223,7 +223,7 @@ class OnboardingScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: controller.nextPage,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: btnBg,
+                          backgroundColor: AppColors.rotaryBlue,
                           foregroundColor: btnText,
                           elevation: 0,
                           padding: EdgeInsets.symmetric(

@@ -1,274 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../app/themes/app_colors.dart';
 import '../../core/services/remote_service.dart';
 import '../business_listing/business_controller.dart';
 
-// Default fallback states and cities for graceful offline / unseeded states
-const List<String> _defaultStates = [
-  'Gujarat',
-  'Maharashtra',
-  'Rajasthan',
-  'Madhya Pradesh',
-  'Karnataka',
-  'Tamil Nadu',
-  'Uttar Pradesh',
-  'Delhi',
-  'Punjab',
-  'Haryana',
-  'West Bengal',
-  'Kerala',
-  'Goa',
-  'Andhra Pradesh',
-  'Telangana',
-  'Bihar',
-  'Odisha',
-  'Assam',
-  'Uttarakhand',
-  'Himachal Pradesh',
-  'Jharkhand',
-  'Chhattisgarh',
-];
 
-const Map<String, List<String>> _fallbackCitiesByState = {
-  'Gujarat': [
-    'Surat',
-    'Ahmedabad',
-    'Vadodara',
-    'Rajkot',
-    'Bhavnagar',
-    'Jamnagar',
-    'Junagadh',
-    'Gandhinagar',
-    'Anand',
-    'Navsari',
-    'Bharuch',
-    'Morbi',
-    'Vapi',
-    'Valsad',
-    'Patan',
-    'Porbandar',
-  ],
-  'Rajasthan': [
-    'Jaipur',
-    'Jodhpur',
-    'Udaipur',
-    'Kota',
-    'Bikaner',
-    'Ajmer',
-    'Bhilwara',
-    'Alwar',
-    'Sikar',
-    'Pali',
-    'Sri Ganganagar',
-    'Bharatpur',
-  ],
-  'Maharashtra': [
-    'Mumbai',
-    'Pune',
-    'Nagpur',
-    'Thane',
-    'Nashik',
-    'Aurangabad',
-    'Solapur',
-    'Kolhapur',
-    'Amravati',
-    'Navi Mumbai',
-  ],
-  'Madhya Pradesh': [
-    'Indore',
-    'Bhopal',
-    'Jabalpur',
-    'Gwalior',
-    'Ujjain',
-    'Sagar',
-    'Dewas',
-    'Satna',
-    'Ratlam',
-  ],
-  'Delhi': [
-    'New Delhi',
-    'North Delhi',
-    'South Delhi',
-    'East Delhi',
-    'West Delhi',
-    'Central Delhi',
-    'Dwarka',
-  ],
-  'Karnataka': [
-    'Bengaluru',
-    'Mysuru',
-    'Hubballi',
-    'Mangaluru',
-    'Belagavi',
-    'Davanagere',
-    'Ballari',
-  ],
-  'Tamil Nadu': [
-    'Chennai',
-    'Coimbatore',
-    'Madurai',
-    'Tiruchirappalli',
-    'Salem',
-    'Tirunelveli',
-    'Tiruppur',
-  ],
-  'Uttar Pradesh': [
-    'Lucknow',
-    'Kanpur',
-    'Varanasi',
-    'Agra',
-    'Noida',
-    'Prayagraj',
-    'Ghaziabad',
-    'Meerut',
-    'Bareilly',
-    'Aligarh',
-  ],
-  'Punjab': [
-    'Ludhiana',
-    'Amritsar',
-    'Jalandhar',
-    'Patiala',
-    'Bathinda',
-    'Mohali',
-  ],
-  'Haryana': [
-    'Gurugram',
-    'Faridabad',
-    'Panipat',
-    'Ambala',
-    'Karnal',
-    'Hisar',
-    'Rohtak',
-  ],
-  'West Bengal': [
-    'Kolkata',
-    'Howrah',
-    'Durgapur',
-    'Asansol',
-    'Siliguri',
-  ],
-  'Kerala': [
-    'Thiruvananthapuram',
-    'Kochi',
-    'Kozhikode',
-    'Thrissur',
-    'Kollam',
-  ],
-  'Goa': [
-    'Panaji',
-    'Margao',
-    'Vasco da Gama',
-    'Mapusa',
-    'Ponda',
-  ],
-  'Telangana': [
-    'Hyderabad',
-    'Warangal',
-    'Nizamabad',
-    'Karimnagar',
-    'Khammam',
-  ],
-  'Andhra Pradesh': [
-    'Visakhapatnam',
-    'Vijayawada',
-    'Guntur',
-    'Nellore',
-    'Kurnool',
-    'Tirupati',
-  ],
-  'Bihar': [
-    'Patna',
-    'Gaya',
-    'Bhagalpur',
-    'Muzaffarpur',
-    'Purnia',
-  ],
-};
-
-const List<String> _defaultSectors = [
-  'Sector 1',
-  'Sector 2',
-  'Sector 3',
-  'Sector 4',
-  'Sector 5',
-  'Sector 6',
-  'Sector 7',
-  'Sector 8',
-];
-
-const Map<String, List<String>> _fallbackSectorsByCity = {
-  'surat': [
-    'Sector 1',
-    'Sector 2',
-    'Sector 3',
-    'Varachha',
-    'Adajan',
-    'Vesu',
-    'Katargam',
-    'Ring Road Area',
-    'Majura Gate',
-    'Piplod',
-    'Pal',
-    'Rander',
-    'Athwa Lines',
-    'Udhna',
-    'Dindoli',
-    'Althan',
-  ],
-  'ahmedabad': [
-    'Sector 1',
-    'Sector 2',
-    'SG Highway',
-    'Prahlad Nagar',
-    'Bodakdev',
-    'Satellite',
-    'Navrangpura',
-    'Maninagar',
-    'Vastrapur',
-    'Bopal',
-  ],
-  'rajkot': [
-    'Sector 1',
-    'Kalawad Road',
-    'Yagnik Road',
-    'University Road',
-    '150 Feet Ring Road',
-    'Madhapar',
-  ],
-  'vadodara': [
-    'Sector 1',
-    'Alkapuri',
-    'Gotri',
-    'Sayajigunj',
-    'Akota',
-    'Fatehgunj',
-    'Manjalpur',
-  ],
-  'jaipur': [
-    'Sector 1',
-    'Sector 2',
-    'Malviya Nagar',
-    'Vaishali Nagar',
-    'Mansarovar',
-    'C-Scheme',
-    'Tonk Road',
-    'Raja Park',
-  ],
-  'mumbai': [
-    'Sector 1',
-    'Andheri',
-    'Bandra',
-    'Borivali',
-    'Dadar',
-    'Powai',
-    'Thane West',
-    'Vashi',
-  ],
-};
 
 class CreateBusinessScreen extends StatefulWidget {
   const CreateBusinessScreen({super.key});
@@ -407,14 +146,12 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
               return (item['name'] ?? item['state'] ?? '').toString();
             }
             return item.toString();
-          }).where((s) => s.trim().isNotEmpty).toList();
+          }).where((s) => s.trim().isNotEmpty).toSet().toList();
 
-          if (parsed.isNotEmpty) {
-            if (mounted) {
-              setState(() {
-                _states = parsed;
-              });
-            }
+          if (parsed.isNotEmpty && mounted) {
+            setState(() {
+              _states = parsed;
+            });
             return;
           }
         }
@@ -424,9 +161,6 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
     } finally {
       if (mounted) {
         setState(() {
-          if (_states.isEmpty) {
-            _states = List<String>.from(_defaultStates);
-          }
           _isLoadingStates = false;
         });
       }
@@ -439,6 +173,9 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
       _cities.clear();
       _selectedCity = null;
       _cityController.clear();
+      _sectors.clear();
+      _selectedSector = null;
+      _sectorController.clear();
     });
 
     List<String> fetchedCities = [];
@@ -460,18 +197,13 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
       if (list != null && list.isNotEmpty) {
         fetchedCities = list.map((item) {
           if (item is Map) {
-            return (item['name'] ?? item['city'] ?? item['title'] ?? '').toString();
+            return (item['name'] ?? item['city'] ?? item['cityName'] ?? item['title'] ?? '').toString();
           }
           return item.toString();
-        }).where((c) => c.trim().isNotEmpty).toList();
+        }).where((c) => c.trim().isNotEmpty).toSet().toList();
       }
     } catch (e) {
       debugPrint('Error fetching cities for $state: $e');
-    }
-
-    // Fallback if API returned empty for this specific state
-    if (fetchedCities.isEmpty && _fallbackCitiesByState.containsKey(state)) {
-      fetchedCities = List<String>.from(_fallbackCitiesByState[state]!);
     }
 
     if (mounted) {
@@ -509,20 +241,13 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
       if (list != null && list.isNotEmpty) {
         fetchedSectors = list.map((item) {
           if (item is Map) {
-            return (item['name'] ?? item['sector'] ?? item['title'] ?? '').toString();
+            return (item['name'] ?? item['sector'] ?? item['sectorName'] ?? item['title'] ?? '').toString();
           }
           return item.toString();
-        }).where((s) => s.trim().isNotEmpty).toList();
+        }).where((s) => s.trim().isNotEmpty).toSet().toList();
       }
     } catch (e) {
       debugPrint('Error fetching sectors for $city: $e');
-    }
-
-    final cityLower = city.trim().toLowerCase();
-    if (fetchedSectors.isEmpty && _fallbackSectorsByCity.containsKey(cityLower)) {
-      fetchedSectors = List<String>.from(_fallbackSectorsByCity[cityLower]!);
-    } else if (fetchedSectors.isEmpty) {
-      fetchedSectors = List<String>.from(_defaultSectors);
     }
 
     if (mounted) {
@@ -680,28 +405,52 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
       return;
     }
 
-    // final selectedCity = _selectedCity ?? _cityController.text.trim();
-    // final selectedSector = _selectedSector ?? _sectorController.text.trim();
-    // if (_selectedState == null || _selectedState!.trim().isEmpty) {
-    //   Get.snackbar(
-    //     'Required Field',
-    //     'Please select a State',
-    //     snackPosition: SnackPosition.BOTTOM,
-    //     backgroundColor: Colors.orangeAccent,
-    //     colorText: Colors.white,
-    //   );
-    //   return;
-    // }
-    // if (selectedCity.isEmpty) {
-    //   Get.snackbar(
-    //     'Required Field',
-    //     'Please select a City',
-    //     snackPosition: SnackPosition.BOTTOM,
-    //     backgroundColor: Colors.orangeAccent,
-    //     colorText: Colors.white,
-    //   );
-    //   return;
-    // }
+    final phone = _phoneController.text.trim();
+    if (phone.length != 10) {
+      Get.snackbar(
+        'Invalid Phone Number',
+        'Please enter a valid 10-digit phone number',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orangeAccent,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    final whatsapp = _whatsappController.text.trim();
+    if (whatsapp.isNotEmpty && whatsapp.length != 10) {
+      Get.snackbar(
+        'Invalid WhatsApp Number',
+        'WhatsApp number must be exactly 10 digits',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orangeAccent,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    final selectedCity = _selectedCity ?? _cityController.text.trim();
+    final selectedSector = _selectedSector ?? _sectorController.text.trim();
+    if (_selectedState == null || _selectedState!.trim().isEmpty) {
+      Get.snackbar(
+        'Required Field',
+        'Please select a State',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orangeAccent,
+        colorText: Colors.white,
+      );
+      return;
+    }
+    if (selectedCity.isEmpty) {
+      Get.snackbar(
+        'Required Field',
+        'Please select a City',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.orangeAccent,
+        colorText: Colors.white,
+      );
+      return;
+    }
 
     setState(() => _isLoading = true);
 
@@ -711,9 +460,9 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
       'category': _selectedCategory ?? 'Doctors',
       'specialty': _specialtyController.text.trim(),
       'description': _descriptionController.text.trim(),
-      // 'state': _selectedState ?? '',
-      // 'city': selectedCity,
-      // 'sector': selectedSector,
+      'state': _selectedState ?? '',
+      'city': selectedCity,
+      'sector': selectedSector,
       'address': _addressController.text.trim(),
       'phoneNumber': _phoneController.text.trim(),
       'whatsappNumber': _whatsappController.text.trim().isNotEmpty
@@ -860,13 +609,27 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
                 _buildInputField(
                   label: 'Phone Number *',
                   controller: _phoneController,
-                  hint: '+91 98765 43210',
+                  hint: 'Enter 10-digit phone number',
                   keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(10),
+                  ],
+                  maxLength: 10,
                   textPrimary: textPrimary,
                   textSecondary: textSecondary,
                   cardBg: cardBg,
                   border: border,
-                  validator: (val) => val == null || val.trim().isEmpty ? 'Phone number is required' : null,
+                  validator: (val) {
+                    final text = val?.trim() ?? '';
+                    if (text.isEmpty) {
+                      return 'Phone number is required';
+                    }
+                    if (text.length != 10) {
+                      return 'Phone number must be exactly 10 digits';
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 14),
@@ -874,12 +637,24 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
                 _buildInputField(
                   label: 'WhatsApp Number',
                   controller: _whatsappController,
-                  hint: '+919876543210',
+                  hint: 'Enter 10-digit WhatsApp number (optional)',
                   keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(10),
+                  ],
+                  maxLength: 10,
                   textPrimary: textPrimary,
                   textSecondary: textSecondary,
                   cardBg: cardBg,
                   border: border,
+                  validator: (val) {
+                    final text = val?.trim() ?? '';
+                    if (text.isNotEmpty && text.length != 10) {
+                      return 'WhatsApp number must be exactly 10 digits';
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 14),
@@ -895,19 +670,19 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
                   border: border,
                 ),
 
-                // const SizedBox(height: 24),
-                //
-                // // Section 3: Location Details
-                // _buildSectionHeader('Location Details', textPrimary),
-                // const SizedBox(height: 12),
-                //
-                // _buildStateDropdown(cardBg, border, textPrimary, textSecondary),
-                // const SizedBox(height: 14),
-                //
-                // _buildCityDropdown(cardBg, border, textPrimary, textSecondary),
-                // const SizedBox(height: 14),
-                //
-                // _buildSectorDropdown(cardBg, border, textPrimary, textSecondary),
+                const SizedBox(height: 24),
+
+                // Section 3: Location Details
+                _buildSectionHeader('Location Details', textPrimary),
+                const SizedBox(height: 12),
+
+                _buildStateDropdown(cardBg, border, textPrimary, textSecondary),
+                const SizedBox(height: 14),
+
+                _buildCityDropdown(cardBg, border, textPrimary, textSecondary),
+                const SizedBox(height: 14),
+
+                _buildSectorDropdown(cardBg, border, textPrimary, textSecondary),
 
                 const SizedBox(height: 14),
 
@@ -1473,7 +1248,7 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
 
   Widget _buildSectorDropdown(Color cardBg, Color border, Color textPrimary, Color textSecondary) {
     final bool isCitySelected = _selectedCity != null && _selectedCity!.isNotEmpty;
-    final bool isEnabled = isCitySelected && !_isLoadingSectors;
+    final bool isEnabled = isCitySelected && !_isLoadingSectors && _sectors.isNotEmpty;
     final hasMatch = _sectors.contains(_selectedSector);
     final effectiveValue = hasMatch ? _selectedSector : null;
 
@@ -1530,7 +1305,9 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
                         ? 'Select city first to enable sectors'
                         : _isLoadingSectors
                             ? 'Loading $_selectedCity sectors...'
-                            : 'Select Sector (e.g. ${_sectors.isNotEmpty ? _sectors.first : 'Sector 1'})',
+                            : (_sectors.isNotEmpty
+                                ? 'Select Sector (Optional)'
+                                : 'No sectors found for $_selectedCity'),
                     style: TextStyle(
                       color: isEnabled
                           ? textSecondary.withValues(alpha: 0.6)
@@ -1587,6 +1364,8 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
     required Color cardBg,
     required Color border,
     String? Function(String?)? validator,
+    List<TextInputFormatter>? inputFormatters,
+    int? maxLength,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1611,6 +1390,8 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
             controller: controller,
             maxLines: maxLines,
             keyboardType: keyboardType,
+            inputFormatters: inputFormatters,
+            maxLength: maxLength,
             validator: validator,
             style: TextStyle(
               color: textPrimary,
@@ -1618,10 +1399,16 @@ class _CreateBusinessScreenState extends State<CreateBusinessScreen> {
               fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
+              counterText: '',
               hintText: hint,
               hintStyle: TextStyle(
                 color: textSecondary.withValues(alpha: 0.6),
                 fontSize: 13.5,
+              ),
+              errorStyle: const TextStyle(
+                color: Color(0xFFEF4444),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
               ),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,

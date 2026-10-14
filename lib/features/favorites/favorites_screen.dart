@@ -5,11 +5,27 @@ import '../../core/widgets/business_card.dart';
 import 'favorites_controller.dart';
 import '../home/main_nav_screen.dart';
 
-class FavoritesScreen extends GetView<FavoritesController> {
+class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
 
   @override
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
+}
+
+class _FavoritesScreenState extends State<FavoritesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (Get.isRegistered<FavoritesController>()) {
+        Get.find<FavoritesController>().fetchUserFavorites();
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final controller = Get.find<FavoritesController>();
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bg = isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final textPrimary = isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;

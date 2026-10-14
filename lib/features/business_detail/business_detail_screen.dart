@@ -247,6 +247,7 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                           onPressed: () => favController.toggleFavorite(
                             activeBusinessId,
                             businessName: activeBusiness?.name ?? business?.name ?? displayName,
+                            business: activeBusiness ?? business,
                           ),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
@@ -417,6 +418,7 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                             onTap: () => favController.toggleFavorite(
                               activeBusinessId,
                               businessName: activeBusiness?.name ?? business?.name ?? displayName,
+                              business: activeBusiness ?? business,
                             ),
                           ),
                         ],

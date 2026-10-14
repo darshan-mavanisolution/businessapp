@@ -15,7 +15,6 @@ class LoginScreen extends GetView<AuthController> {
     final textSecondary = isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary;
     final cardBg = isDark ? AppColors.darkSecondary : AppColors.lightSecondary;
     final borderColor = isDark ? AppColors.darkBorder : AppColors.lightBorder;
-    final primaryBtnBg = isDark ? Colors.white : Colors.black;
     final primaryBtnText = isDark ? Colors.black : Colors.white;
 
     return Scaffold(
@@ -106,7 +105,7 @@ class LoginScreen extends GetView<AuthController> {
                 child: ElevatedButton(
                   onPressed: () => controller.sendOtp(),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryBtnBg,
+                    backgroundColor: AppColors.rotaryBlue,
                     foregroundColor: primaryBtnText,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

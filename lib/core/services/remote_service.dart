@@ -595,6 +595,7 @@ class RemoteService {
       );
       Response res = await client.get(uri, headers: authHeader);
       print("Get User Favorites ($uri) +++++++++++++");
+      log("Get User Favorite -=-=-=-=- ${res.body}");
       print("------ STATUS CODE ---- ${res.statusCode}");
       print(res.body);
 

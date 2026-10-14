@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -23,11 +25,13 @@ class FavoritesController extends GetxController {
     fetchUserFavorites();
   }
 
-  Future fetchUserFavorites({Map<String, dynamic>? map}) async {
-    isLoading.value = true;
-    final query = map ?? {'page': 1, 'limit': 20};
+  Future fetchUserFavorites({Map<String, dynamic>? map, bool showLoading = false}) async {
+    if (showLoading || apiFavorites.isEmpty) {
+      isLoading.value = true;
+    }
+    final query = map ?? {'page': 1, 'limit': 50};
     var res = await RemoteService.getUserFavorites(map: query);
-    print("fetchUserFavorites Res--------->>>> $res");
+    log("fetchUserFavorites Res--------->>>> $res");
     isLoading.value = false;
 
     if (res != null && (res['success'] == true || res['status'] == 200 || res['data'] != null)) {
@@ -45,7 +49,7 @@ class FavoritesController extends GetxController {
         list = res;
       }
 
-      if (list != null && list.isNotEmpty) {
+      if (list != null) {
         final List<BusinessModel> parsed = [];
         for (final item in list) {
           if (item is Map) {
@@ -68,11 +72,7 @@ class FavoritesController extends GetxController {
           if (b.id.isNotEmpty) favoriteIds.add(b.id);
         }
         _storage.write(_key, favoriteIds.toList());
-      } else {
-        apiFavorites.clear();
       }
-    } else {
-      apiFavorites.clear();
     }
     return res;
   }
@@ -81,16 +81,21 @@ class FavoritesController extends GetxController {
     return favoriteIds.contains(id);
   }
 
-  Future toggleFavorite(String id, {String? businessName, String? personId}) async {
+  Future toggleFavorite(
+    String id, {
+    String? businessName,
+    String? personId,
+    BusinessModel? business,
+  }) async {
     final effectiveId = personId ?? id;
     if (favoriteIds.contains(effectiveId) || favoriteIds.contains(id)) {
       favoriteIds.remove(effectiveId);
       favoriteIds.remove(id);
-      apiFavorites.removeWhere((b) => b.id == effectiveId || b.id == id);
+      apiFavorites.removeWhere((b) =>
+          b.id == effectiveId ||
+          b.id == id ||
+          (business != null && b.id == business.id));
       _storage.write(_key, favoriteIds.toList());
-
-      var res = await RemoteService.removeFavorite(personId: effectiveId);
-      print("removeFavorite Res--------->>>> $res");
 
       Get.snackbar(
         'Removed from Favorites',
@@ -100,14 +105,26 @@ class FavoritesController extends GetxController {
         backgroundColor: Colors.black87,
         colorText: Colors.white,
       );
+
+      var res = await RemoteService.removeFavorite(personId: effectiveId);
+      print("removeFavorite Res--------->>>> $res");
+
+      fetchUserFavorites();
       return res;
     } else {
       favoriteIds.add(effectiveId);
       if (id.isNotEmpty) favoriteIds.add(id);
-      _storage.write(_key, favoriteIds.toList());
 
-      var res = await RemoteService.addFavorite(personId: effectiveId);
-      print("addFavorite Res--------->>>> $res");
+      if (business != null) {
+        final alreadyInList = apiFavorites.any((b) =>
+            b.id == business.id ||
+            b.id == effectiveId ||
+            (business.id.isNotEmpty && b.id == business.id));
+        if (!alreadyInList) {
+          apiFavorites.insert(0, business);
+        }
+      }
+      _storage.write(_key, favoriteIds.toList());
 
       Get.snackbar(
         'Added to Favorites',
@@ -117,26 +134,31 @@ class FavoritesController extends GetxController {
         backgroundColor: const Color(0xFF10B981),
         colorText: Colors.white,
       );
+
+      var res = await RemoteService.addFavorite(personId: effectiveId);
+      print("addFavorite Res--------->>>> $res");
+
+      fetchUserFavorites();
       return res;
     }
   }
 
-  Future addFavorite(String personId, {String? businessName}) async {
-    favoriteIds.add(personId);
-    _storage.write(_key, favoriteIds.toList());
-    final res = await RemoteService.addFavorite(personId: personId);
-    print("addFavorite Res--------->>>> $res");
-    return res;
-  }
-
-  Future removeFavorite(String personId, {String? businessName}) async {
-    favoriteIds.remove(personId);
-    apiFavorites.removeWhere((b) => b.id == personId);
-    _storage.write(_key, favoriteIds.toList());
-    final res = await RemoteService.removeFavorite(personId: personId);
-    print("removeFavorite Res--------->>>> $res");
-    return res;
-  }
+  // Future addFavorite(String personId, {String? businessName}) async {
+  //   favoriteIds.add(personId);
+  //   _storage.write(_key, favoriteIds.toList());
+  //   final res = await RemoteService.addFavorite(personId: personId);
+  //   print("addFavorite Res--------->>>> $res");
+  //   return res;
+  // }
+  //
+  // Future removeFavorite(String personId, {String? businessName}) async {
+  //   favoriteIds.remove(personId);
+  //   apiFavorites.removeWhere((b) => b.id == personId);
+  //   _storage.write(_key, favoriteIds.toList());
+  //   final res = await RemoteService.removeFavorite(personId: personId);
+  //   print("removeFavorite Res--------->>>> $res");
+  //   return res;
+  // }
 
   List<BusinessModel> get favoriteBusinesses => apiFavorites;
 }

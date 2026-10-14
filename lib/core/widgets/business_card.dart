@@ -221,6 +221,7 @@ class BusinessCard extends StatelessWidget {
                         onTap: () => favController.toggleFavorite(
                           business.id,
                           businessName: business.name,
+                          business: business,
                         ),
                         borderRadius: BorderRadius.circular(16),
                         child: Padding(

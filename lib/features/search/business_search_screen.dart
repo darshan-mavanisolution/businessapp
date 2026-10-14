@@ -22,9 +22,6 @@ class BusinessSearchScreen extends GetView<BusinessController> {
     final textSecondary = isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary;
     final searchBg = isDark ? AppColors.darkSecondary : AppColors.lightSecondary;
     final border = isDark ? AppColors.darkBorder : AppColors.lightBorder;
-    final chipBg = isDark ? AppColors.darkCard : AppColors.lightSecondary;
-    final selectedChipBg = isDark ? Colors.white : Colors.black;
-    final selectedChipText = isDark ? Colors.black : Colors.white;
 
     return Scaffold(
       backgroundColor: bg,
@@ -70,10 +67,10 @@ class BusinessSearchScreen extends GetView<BusinessController> {
                       ),
                     ],
                   ),
-                  IconButton(
-                    icon: Icon(Icons.tune_rounded, color: textPrimary, size: 22),
-                    onPressed: () => Get.toNamed(AppRoutes.filter),
-                  ),
+                  // IconButton(
+                  //   icon: Icon(Icons.tune_rounded, color: textPrimary, size: 22),
+                  //   onPressed: () => Get.toNamed(AppRoutes.filter),
+                  // ),
                 ],
               ),
             ),
@@ -132,73 +129,6 @@ class BusinessSearchScreen extends GetView<BusinessController> {
             ),
 
             const SizedBox(height: 10),
-
-            // Category Selection Chips Row
-            SizedBox(
-              height: 34,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  'All',
-                  'Doctors',
-                  'Advocates',
-                  'Hotels',
-                  'Restaurants',
-                  'Electronics',
-                  'Education',
-                  'Salons',
-                  'Gyms',
-                ].map((catName) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: Obx(() {
-                      final isSelected = filterController.activeCategory.value.toLowerCase() ==
-                              catName.toLowerCase() ||
-                          (catName == 'Doctors' &&
-                              filterController.activeCategory.value.toLowerCase() == 'doctor') ||
-                          (catName == 'Advocates' &&
-                              filterController.activeCategory.value.toLowerCase() == 'advocate') ||
-                          (catName == 'Hotels' &&
-                              filterController.activeCategory.value.toLowerCase() == 'hotel') ||
-                          (catName == 'Restaurants' &&
-                              filterController.activeCategory.value.toLowerCase() == 'restaurant') ||
-                          (catName == 'Salons' &&
-                              filterController.activeCategory.value.toLowerCase() == 'salon') ||
-                          (catName == 'Gyms' &&
-                              filterController.activeCategory.value.toLowerCase() == 'gym');
-
-                      return GestureDetector(
-                        onTap: () {
-                          filterController.setCategory(catName);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: isSelected ? selectedChipBg : chipBg,
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(
-                              color: isSelected ? Colors.transparent : border,
-                              width: 1,
-                            ),
-                          ),
-                          child: Text(
-                            catName,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                              color: isSelected ? selectedChipText : textPrimary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  );
-                }).toList(),
-              ),
-            ),
-
-            const SizedBox(height: 12),
 
             // Search Results List
             Expanded(

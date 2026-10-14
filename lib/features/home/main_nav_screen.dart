@@ -6,6 +6,7 @@ import '../../app/themes/app_colors.dart';
 import 'home_screen.dart';
 import '../city_sector/city_selection_screen.dart';
 import '../favorites/favorites_screen.dart';
+import '../favorites/favorites_controller.dart';
 import '../profile/profile_screen.dart';
 
 class MainNavController extends GetxController {
@@ -13,6 +14,11 @@ class MainNavController extends GetxController {
 
   void changeTab(int index) {
     currentIndex.value = index;
+    if (index == 2) {
+      if (Get.isRegistered<FavoritesController>()) {
+        Get.find<FavoritesController>().fetchUserFavorites();
+      }
+    }
   }
 }
 
