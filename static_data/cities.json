@@ -1,0 +1,233 @@
+[
+  {
+    "id": "surat",
+    "name": "Surat",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1545645648-524cba4655f4?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "120+"
+  },
+  {
+    "id": "rajkot",
+    "name": "Rajkot",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "90+"
+  },
+  {
+    "id": "ahmedabad",
+    "name": "Ahmedabad",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1599818805727-b50a316ecb34?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "210+"
+  },
+  {
+    "id": "vadodara",
+    "name": "Vadodara",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "140+"
+  },
+  {
+    "id": "bhavnagar",
+    "name": "Bhavnagar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "65+"
+  },
+  {
+    "id": "jamnagar",
+    "name": "Jamnagar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "55+"
+  },
+  {
+    "id": "junagadh",
+    "name": "Junagadh",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "48+"
+  },
+  {
+    "id": "gandhinagar",
+    "name": "Gandhinagar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "80+"
+  },
+  {
+    "id": "anand",
+    "name": "Anand",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "60+"
+  },
+  {
+    "id": "nadiad",
+    "name": "Nadiad",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "42+"
+  },
+  {
+    "id": "valsad",
+    "name": "Valsad",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "38+"
+  },
+  {
+    "id": "bharuch",
+    "name": "Bharuch",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "45+"
+  },
+  {
+    "id": "porbandar",
+    "name": "Porbandar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "35+"
+  },
+  {
+    "id": "morbi",
+    "name": "Morbi",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "52+"
+  },
+  {
+    "id": "mehsana",
+    "name": "Mehsana",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "40+"
+  },
+  {
+    "id": "navsari",
+    "name": "Navsari",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "36+"
+  },
+  {
+    "id": "surendranagar",
+    "name": "Surendranagar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "34+"
+  },
+  {
+    "id": "amreli",
+    "name": "Amreli",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "30+"
+  },
+  {
+    "id": "patan",
+    "name": "Patan",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "32+"
+  },
+  {
+    "id": "palanpur",
+    "name": "Palanpur",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "28+"
+  },
+  {
+    "id": "himatnagar",
+    "name": "Himatnagar",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "26+"
+  },
+  {
+    "id": "godhra",
+    "name": "Godhra",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "25+"
+  },
+  {
+    "id": "bhuj",
+    "name": "Bhuj",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1599818805727-b50a316ecb34?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "44+"
+  },
+  {
+    "id": "dahod",
+    "name": "Dahod",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "24+"
+  },
+  {
+    "id": "botad",
+    "name": "Botad",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1545645648-524cba4655f4?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "22+"
+  },
+  {
+    "id": "gir_somnath",
+    "name": "Gir Somnath",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "38+"
+  },
+  {
+    "id": "dwarka",
+    "name": "Dwarka",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "46+"
+  },
+  {
+    "id": "modasa",
+    "name": "Modasa",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "20+"
+  },
+  {
+    "id": "lunawada",
+    "name": "Lunawada",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "18+"
+  },
+  {
+    "id": "rajpipla",
+    "name": "Rajpipla",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "22+"
+  },
+  {
+    "id": "vyara",
+    "name": "Vyara",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "19+"
+  },
+  {
+    "id": "ahwa",
+    "name": "Ahwa",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "15+"
+  },
+  {
+    "id": "chhota_udaipur",
+    "name": "Chhota Udaipur",
+    "state": "Gujarat",
+    "imageUrl": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=600&auto=format&fit=crop&q=80",
+    "businessCount": "18+"
+  }
+]

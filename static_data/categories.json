@@ -1,0 +1,58 @@
+[
+  {
+    "id": "doctor",
+    "name": "Doctors",
+    "subtitle": "Find trusted doctors near you",
+    "countText": "120+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "advocate",
+    "name": "Advocates",
+    "subtitle": "Legal support and services",
+    "countText": "45+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "hotel",
+    "name": "Hotels",
+    "subtitle": "Best hotels for your stay",
+    "countText": "60+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "restaurant",
+    "name": "Restaurants",
+    "subtitle": "Discover great food near you",
+    "countText": "250+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "electronics",
+    "name": "Electronics",
+    "subtitle": "Mobiles, laptops and more",
+    "countText": "75+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "education",
+    "name": "Education",
+    "subtitle": "Schools, colleges and learning centers",
+    "countText": "110+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "salon",
+    "name": "Salons",
+    "subtitle": "Hair, beauty and wellness",
+    "countText": "80+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "gym",
+    "name": "Gyms",
+    "subtitle": "Fitness clubs and trainers",
+    "countText": "95+ Listings",
+    "imageUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&auto=format&fit=crop&q=80"
+  }
+]

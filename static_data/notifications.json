@@ -1,0 +1,23 @@
+[
+  {
+    "id": "notif_1",
+    "title": "New Specialist in Surat!",
+    "subtitle": "Dr. Mehul Desai (Cardiologist) is now available for appointments on Ghod Dod Road.",
+    "time": "10 mins ago",
+    "unread": true
+  },
+  {
+    "id": "notif_2",
+    "title": "Exclusive Dining Discount",
+    "subtitle": "Enjoy 20% off your next dinner at The Grand Heritage this weekend.",
+    "time": "2 hours ago",
+    "unread": true
+  },
+  {
+    "id": "notif_3",
+    "title": "Welcome to BizFinder",
+    "subtitle": "Discover trusted doctors, salons, gyms, and local services near you.",
+    "time": "Yesterday",
+    "unread": false
+  }
+]

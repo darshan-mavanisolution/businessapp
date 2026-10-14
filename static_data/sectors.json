@@ -1,0 +1,42 @@
+[
+  {
+    "id": "sec_1",
+    "name": "Sector 1",
+    "businessCount": "120+ Businesses"
+  },
+  {
+    "id": "sec_2",
+    "name": "Sector 2",
+    "businessCount": "84+ Businesses"
+  },
+  {
+    "id": "sec_3",
+    "name": "Sector 3",
+    "businessCount": "96+ Businesses"
+  },
+  {
+    "id": "sec_4",
+    "name": "Sector 4",
+    "businessCount": "110+ Businesses"
+  },
+  {
+    "id": "sec_5",
+    "name": "Sector 5",
+    "businessCount": "76+ Businesses"
+  },
+  {
+    "id": "sec_6",
+    "name": "Sector 6",
+    "businessCount": "68+ Businesses"
+  },
+  {
+    "id": "sec_7",
+    "name": "Sector 7",
+    "businessCount": "92+ Businesses"
+  },
+  {
+    "id": "sec_8",
+    "name": "Sector 8",
+    "businessCount": "64+ Businesses"
+  }
+]

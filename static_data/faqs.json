@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "question": "How do I call a business or doctor?",
+    "answer": "Simply tap the Call button on any card or detail screen. Your phone dialer will open with the number pre-filled."
+  },
+  {
+    "id": 2,
+    "question": "How do I get directions to a clinic or store?",
+    "answer": "Tap \"Directions\" on the detail page or \"Open in Google Maps\" on the Location screen to view turn-by-turn routing."
+  },
+  {
+    "id": 3,
+    "question": "How do I filter businesses by rating or city?",
+    "answer": "Use the filter chips at the top of the search and listing screens or tap the filter sliders icon to open all filter options."
+  },
+  {
+    "id": 4,
+    "question": "How do I switch between Dark and Light themes?",
+    "answer": "Go to your Profile tab and toggle the theme switch. BizFinder will remember your selection permanently."
+  }
+]
